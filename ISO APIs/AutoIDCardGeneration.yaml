@@ -105,7 +105,7 @@ definitions:
             default: "+1 877-734-2265"
           AgencyName:
             type: string
-            default: "Lockton Affinity"
+            default: "Affinity"
           AgencyAddressLine1:
             type: string
             default: "0895 Lowell Ave"
