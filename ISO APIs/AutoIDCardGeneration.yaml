@@ -108,10 +108,10 @@ definitions:
             default: "Solartis Agency"
           AgencyAddressLine1:
             type: string
-            default: "1601 North-Sepulveda Blvd. #606"
+            default: "1601 North-Sepulveda Blvd."
           AgencyAddressLine2:
             type: string
-            default: "Overland Park"
+            default: "#606"
           AgencyCity:
             type: string
             default: "Manhattan Beach"
@@ -177,10 +177,10 @@ definitions:
             default: "10198146181"
           EffectiveDate:
             type: string
-            default: "02/14/2019"
+            default: "02/14/2020"
           ExpirationDate:
             type: string
-            default: "02/14/2020"
+            default: "02/14/2021"
           LineOfBusiness:
             type: string
             default: "Commercial"
@@ -189,7 +189,7 @@ definitions:
             default: "No"
           AutoIDIssuedDate:
             type: string
-            default: "02/14/2019"
+            default: "02/14/2020"
           ContactIfEmergency:
             type: string
             default: "Agency"
