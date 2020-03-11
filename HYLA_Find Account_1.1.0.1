@@ -1,0 +1,314 @@
+swagger: '2.0'
+info:
+  version: "1.0.0"
+  title: Solartis FindAccount API for HYLA
+  description: To Find account details
+  
+  
+host: hylakb.uat.solartis.net
+basePath: /KnowledgeEngineV6_6/KnowledgeBase
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /FireEventV3:
+    post:
+      description: To find Account details for the given input
+      operationId: FindAccount
+      produces:
+        - application/json
+      parameters:
+        - name: Token
+          in: header
+          description: Authentication Token
+          required: true
+          type: string
+          format: string
+          default: "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"
+        - name: EventName
+          in: header
+          description: Name of the event to be invoked
+          required: true
+          type: string
+          format: string
+          default: "FindAccount1.1.0.1"
+        - name: OwnerId
+          in: header
+          description: Owner ID of the Product
+          required: true
+          type: string
+          format: string
+          default: "2282"
+        - name: MODE
+          in: header
+          description: MODE of the product
+          required: true
+          type: string
+          format: string
+          default: "DEV"
+        - name: Environment
+          in: header
+          description: Environment in which the event to be invoked
+          required: true
+          type: string
+          format: string
+          default: "15"
+        - name: FindAccount
+          in: body
+          description: Find Account Details
+          required: true
+          schema:
+            $ref: '#/definitions/FindAccount_Request'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            $ref: '#/definitions/FindAccount_Success_Response'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+
+definitions:
+  FindAccount_Request:
+    type: object
+    required:
+      - ServiceRequestDetail
+    properties:
+      ServiceRequestDetail:
+        type: object
+        properties:
+          OwnerId:
+            type: string
+            default: "2282"
+          ResponseType:
+            type: string
+            enum: ["JSON","XML"]
+            default: "JSON"
+          EndClientUserUniqueSessionId:
+            type: string
+            default: "1.0"
+          UserName:
+            type: string
+            default: "hylaadmin"
+          Token:
+            type: string
+            default: "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"
+          ServiceRequestVersion:
+            type: string
+            default: "1.0"
+          ServiceResponseVersion:
+            type: string
+            default: "1.0"
+          RegionCode:
+            type: string
+            default: "US"
+          LanguageCode:
+            type: string
+            default: "en"
+         
+      accountId:
+        type: string
+        default: "ACC001"
+      accountStatus:
+        type: string
+        default: ""
+      firstName: 
+        type: string
+        default: ""
+      lastName: 
+        type: string
+        default: ""
+      email: 
+        type: string
+        default: ""
+      phone: 
+        type: string
+        default: ""
+      communicationPreferences: 
+        type: string
+        default: ""
+      customerNickname: 
+        type: string
+        default: ""
+      address1: 
+        type: string
+        default: ""
+      address2: 
+        type: string
+        default: ""
+      city: 
+        type: string
+        default: ""
+      state: 
+        type: string
+        default: ""
+      zipCode: 
+        type: string
+        default: ""
+      annualBilling: 
+        type: string
+        default: ""
+      programName: 
+        type: string
+        default: ""
+      programId: 
+        type: string
+        default: ""
+      campaignId: 
+        type: string
+        default: ""
+      channel: 
+        type: string
+        default: ""
+      medium: 
+        type: string
+        default: ""
+      partner: 
+        type: string
+        default: ""
+      sourcePlatform: 
+        type: string
+        default: ""
+      referralCode:
+        type: string
+        default: ""
+
+  FindAccount_Success_Response:
+    type: object
+    required:
+      - ServiceRequestDetail
+      - accountList
+    properties:
+      ServiceRequestDetail:
+        type: object
+        properties:
+          ResponseType:
+            type: string
+            enum: ["JSON","XML"]
+            default: "JSON"
+          OwnerId:
+            type: string
+            default: "2282"
+          EndClientUserUniqueSessionId:
+            type: string
+            default: "1.0"
+          UserName:
+            type: string
+            default: "hylaadmin"
+          Token:
+            type: string
+            default: "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"
+          ServiceRequestVersion:
+            type: string
+            default: "1.0"
+          RegionCode:
+            type: string
+            default: "US"
+      ResponseStatus:
+        type: string
+     
+      accountList:
+        type: array
+        items:
+          properties:
+            accountId:
+             type: string
+             default: "ACC001"
+            accountStatus:
+              type: string
+              default: ""
+            firstName: 
+              type: string
+              default: ""
+            lastName: 
+              type: string
+              default: ""
+            email: 
+              type: string
+              default: ""
+            phone: 
+              type: string
+              default: ""
+            communicationPreferences: 
+              type: string
+              default: ""
+            customerNickname: 
+              type: string
+              default: ""
+            address1: 
+              type: string
+              default: ""
+            address2: 
+              type: string
+              default: ""
+            city: 
+              type: string
+              default: ""
+            state: 
+              type: string
+              default: ""
+            zipCode: 
+              type: string
+              default: ""
+            annualBilling: 
+              type: string
+              default: ""
+            programName: 
+              type: string
+              default: ""
+            programId: 
+              type: string
+              default: ""
+            campaignId: 
+              type: string
+              default: ""
+            channel: 
+              type: string
+              default: ""
+            medium: 
+              type: string
+              default: ""
+            partner: 
+              type: string
+              default: ""
+            sourcePlatform: 
+              type: string
+              default: ""
+            referralCode:
+              type: string
+              default: ""
+             
+ 
+  
+  errorModel:
+    type: object
+    required:
+      - RequestStatus
+      - MessageDetail
+    properties:
+      RequestStatus:
+        type: string
+      MessageDetail:
+        type: object
+        properties:
+          MessageCode:
+            type: string
+          MessageType:
+            type: string
+          UserMessage:
+            type: string
+          MessageLevel:
+            type: string
+          MessageSeverity:
+            type: string
+          MessageList:
+            type: object
+            properties:
+              Message:
+                type: array
+                items:
+                  type: string       
