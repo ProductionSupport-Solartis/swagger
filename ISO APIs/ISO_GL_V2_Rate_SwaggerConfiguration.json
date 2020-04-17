@@ -6,7 +6,7 @@
 		"description": "To get rate for General Liability from Solartis Rate API with ISO ERC."
 	},
 	"host": "commonsformskb.uat.solartis.net",
-	"basePath": "/DroolsV4_4/DroolsService",
+	"basePath": "/DroolsV4_6/DroolsService",
 	"schemes": [
 		"https"
 	],
