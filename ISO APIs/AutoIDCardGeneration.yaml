@@ -201,7 +201,7 @@ definitions:
             default: "H W LongFellow"
           IsCoverLetterNeeded:
             type: string
-            default: "No"            
+            default: "Yes"            
           Vehicles_V2:
             type: array
             items:
