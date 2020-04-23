@@ -27,6 +27,7 @@ paths:
           type: string
           format: string
           default: "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"
+
         - name: EventName
           in: header
           description: Name of the event to be invoked
@@ -34,6 +35,7 @@ paths:
           type: string
           format: string
           default: "PLICalculateRate"
+
         - name: EventVersion
           in: header
           description: Name of the event to be invoked
@@ -41,6 +43,7 @@ paths:
           type: string
           format: string
           default: "2.2.2.1"
+
         - name: Rating
           in: body
           description: Rating content
