@@ -40,7 +40,7 @@ paths:
           required: true
           type: string
           format: string
-          default: "3.1.0.5"
+          default: "3.1.0.6"
         - name: Policy
           in: body
           description: Policy content
@@ -111,7 +111,8 @@ definitions:
           - EventName
           - EventVersion
           - SubmissionNumber
-        
+          - PolicyFee
+          - IsPolicyFeeTaxable
         properties:
           ProductNumber:
             title: "Product Number"
@@ -128,7 +129,7 @@ definitions:
           EventVersion:
             title: "Event Version"
             type: string
-            default: "3.1.0.5"
+            default: "3.1.0.6"
           SubmissionNumber:
             title: "SubmissionNumber"
             type: string
@@ -147,6 +148,13 @@ definitions:
           PartnerCode:
             title: "Partner Code"
             type: string
+          PolicyFee:
+            title: "Policy Fee"
+            type: string  
+          IsPolicyFeeTaxable:
+            title: "Is Policy Fee Taxable"
+            type: string  
+            enum: ["Yes", "No"]
           Coverage:
             type: array
             items:
@@ -413,6 +421,12 @@ definitions:
           RenewalCreditAmount:
             title: "Renewal Credit Amount"
             type: string  
+          PolicyFee:
+            title: "Policy Fee"
+            type: string  
+          IsPolicyFeeTaxable:
+            title: "Is Policy Fee Taxable"
+            type: string
           AnnualPremium:
             title: "Annual Premium"
             type: string
