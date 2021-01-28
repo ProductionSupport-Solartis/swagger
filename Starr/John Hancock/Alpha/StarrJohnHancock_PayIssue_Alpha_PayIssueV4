@@ -1,0 +1,314 @@
+swagger: '2.0'
+info:
+  version: 'Pay_IssueV4'
+  title: Assist Card - Pay Issue API
+  description: |
+    Pay and Issue API accepts the CustomerReferenceNumber as input along with
+    Payment information and issues the CRN and returns the Batch, Policy and other
+    documents.
+  
+    Features:
+    1. Provides ability to Pay for a Customer created and issues Policy for each Traveler in the Batch
+    
+  contact:
+    name: Solartis Support
+    email: solartis_solartis_support@solartis.com
+
+host: scisakbv4-2.solartis.net
+basePath: /DroolsV4_2/DroolsService
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /FireEventV2:
+    post:
+      description: This API issues the Policy from the CRN
+      operationId: Pay_Issue
+      produces:
+        - application/json
+      parameters:
+        - name: Token
+          in: header
+          description: Authentication Token
+          required: true
+          type: string
+          format: string
+          default: >-
+            qOgoyA6vZM3Q/DnlQpXl6wQbCcDP5DYFagteTZt/VELMNKQasxqakmheSNcBh3+meJfQHQzrkqUMBShAjRSbI+GqHpNHwnnhGePGI9fBwn7FhRH344xP9ZxqJ7IotHrBOM26rUJ8PmmyOVImRyUGb/vNhv5FzWalI3Ujx/ylCYyU60ff/N7HN2EDoZJiMH12jXG/gq90OAwOQlgUw8PY2tx3HiNi4hDzm3cS5BXL1/ptzr/l4lOjehfCVvyRl7JIIb6n/Aoa5NeAeqsGrXFwhaGuvAOc0m1R845OmZCHgwep5oCFqbu1/ZUGA5e4/Xtz7BoSL81ws23UYQNpFr867LVAXRaTZSCK7NNndFREoaMzio3jOmHpsDudM7/9XkTE8mxcMSo0L0xeqVwvRXHAMFAOGpzzY6syXB1iyxW2CgML/RXTKvn41MY2R9/tSLRDJRkrApdAB9TqDeybuMja5u+/JYxI979mU8SBPF8gT0S28Nkpzs7V8m0Zg70wR2k2RCzRIuheLVABZLz0o4VvbzY/oIJJVoNHjQHNbjJh67aXM4oHUuCdKlcDVXBDsDLtLO/57AmHYkKnvFWo3m9UXxpr8IwmT8v4LYNMcm7neEL/AbbP/t480Qlt6sF8Bg8ze+DuxQ2rC0H082gUcSm5zFu6VZukZOdmJml/ew5VPTu/HqyqW+s+cCQbAnxxJaZcCiGjTynpQjvAN8guaY+4t1u6VZukZOdmJml/ew5VPTvdMR/+Ze4+GyTdGtMhpaRiVxTDTdbSTOCYCezcGVEBlBkT96jMEiEe3nnxlPZ9dQ3d+ghCBVWWIU8hir4HsWi0gNrBiqUBv8Ndd602owpUAd9Bybe6pV4gSA22FVWxYAezThRmldGDJxjmCZ+hBpnsoG7GyI5+dc4XkRNPRxigzddFqX6JT/1uNik+pAoslo4UKKsh4nOAgDtk9Z7f/r4G
+        - name: EventName
+          in: header
+          description: Name of the event to be invoked
+          required: true
+          type: string
+          format: string
+          default: Pay_IssueV4
+        - name: Pay_Issue
+          in: body
+          description: Pay_Issue/traveler details
+          required: true
+          schema:
+            $ref: '#/definitions/Pay_Issue_Request'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            $ref: '#/definitions/Pay_Issue_Success_Response'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  Pay_Issue_Request:
+    type: object
+    required:
+      - ServiceRequestDetail
+      - PolicyInformation
+    properties:
+      EndClientUserUniqueSessionId:
+        type: string
+      EndClientUserBrowserSessionId:
+        type: string
+      EndClientUserBrowserInformation:
+        type: string
+      PaaSClientIPAddress:
+        type: string
+      ClientUniqueRequestID:
+        type: string
+      ServiceRequestDetail:
+        type: object
+        required:
+          - OwnerId
+          - RegionCode
+          - Token
+          - ServiceRequestVersion
+          - ServiceResponseVersion
+          - ResponseType
+        properties:
+          ServiceRequestVersion:
+            type: string
+            default: '1.0'
+          ServiceResponseVersion:
+            type: string
+            default: '1.0'
+          OwnerId:
+            type: string
+            default: '15'
+            enum:
+              - '15'
+          ResponseType:
+            type: string
+            enum:
+              - JSON
+              - XML
+            default: JSON
+          RegionCode:
+            type: string
+            default: US
+          Token:
+            type: string
+            default: >-
+              qOgoyA6vZM3Q/DnlQpXl6wQbCcDP5DYFagteTZt/VELMNKQasxqakmheSNcBh3+meJfQHQzrkqUMBShAjRSbI+GqHpNHwnnhGePGI9fBwn7FhRH344xP9ZxqJ7IotHrBOM26rUJ8PmmyOVImRyUGb/vNhv5FzWalI3Ujx/ylCYyU60ff/N7HN2EDoZJiMH12jXG/gq90OAwOQlgUw8PY2tx3HiNi4hDzm3cS5BXL1/ptzr/l4lOjehfCVvyRl7JIIb6n/Aoa5NeAeqsGrXFwhaGuvAOc0m1R845OmZCHgwep5oCFqbu1/ZUGA5e4/Xtz7BoSL81ws23UYQNpFr867LVAXRaTZSCK7NNndFREoaMzio3jOmHpsDudM7/9XkTE8mxcMSo0L0xeqVwvRXHAMFAOGpzzY6syXB1iyxW2CgML/RXTKvn41MY2R9/tSLRDJRkrApdAB9TqDeybuMja5u+/JYxI979mU8SBPF8gT0S28Nkpzs7V8m0Zg70wR2k2RCzRIuheLVABZLz0o4VvbzY/oIJJVoNHjQHNbjJh67aXM4oHUuCdKlcDVXBDsDLtLO/57AmHYkKnvFWo3m9UXxpr8IwmT8v4LYNMcm7neEL/AbbP/t480Qlt6sF8Bg8ze+DuxQ2rC0H082gUcSm5zFu6VZukZOdmJml/ew5VPTu/HqyqW+s+cCQbAnxxJaZcCiGjTynpQjvAN8guaY+4t1u6VZukZOdmJml/ew5VPTvdMR/+Ze4+GyTdGtMhpaRiVxTDTdbSTOCYCezcGVEBlBkT96jMEiEe3nnxlPZ9dQ3d+ghCBVWWIU8hir4HsWi0gNrBiqUBv8Ndd602owpUAd9Bybe6pV4gSA22FVWxYAezThRmldGDJxjmCZ+hBpnsoG7GyI5+dc4XkRNPRxigzddFqX6JT/1uNik+pAoslo4UKKsh4nOAgDtk9Z7f/r4G
+          UserName:
+            type: string
+            default: starragent
+          LanguageCode:
+            type: string
+            default: en
+          BrowserIp:
+            type: string
+      PolicyInformation:
+        type: object
+        required:
+          - ProducerCode
+          - ProductVerID
+          - ProductID
+          - ProductNumber
+          - ProductVerNumber
+          - OwnerId
+        properties:
+          ProductVerID:
+            type: string
+            default: '706'
+          ProductID:
+            type: string
+            default: '619'
+          ProductNumber:
+            type: string
+            default: ILT
+          ProductVerNumber:
+            type: string
+            default: '1.0'
+          ProducerCode:
+            type: string
+            default: '1558'
+          MGACode:
+            type: string
+            default: "3391"
+          OwnerId:
+            type: string
+            default: '15'
+            enum:
+              - '15'
+          CustomerNumber:
+            type: string
+          RoleID:
+            type: string
+            default: '5'
+          RoleName:
+            type: string
+            default: Agent
+          RoleType:
+            type: string
+            default: User
+          EventName:
+            type: string
+            default: Pay_IssueV4
+            enum:
+              - Pay_IssueV4
+          CardNumber:
+            type: string
+            enum:
+              - '5555555555554444'
+              - '4012888888881881'
+              - '6011000990139424'
+              - '3530111333300000'
+              - '347712669659320'
+          CVV:
+            type: string
+            default: '123'
+          ExpiryMonth:
+            type: string
+          ExpiryYear:
+            type: string
+          PayerName:
+            type: string
+          PayerAddress1:
+            type: string
+          PayerAddress2:
+            type: string
+          PayerCity:
+            type: string
+          PayerState:
+            type: string
+            description: Provide Payer State Code
+          PayerCountry:
+            type: string
+            default: US
+          PayerZipcode:
+            type: string
+          PayerEmail:
+            type: string
+          PayerPhone:
+            type: string
+          PaymentMethod:
+            type: string
+            enum:
+              - Credit Card
+          CardType:
+            type: string
+            enum:
+              - MasterCard
+              - Visa
+              - JCB
+              - Discover
+              - American Express
+  Pay_Issue_Success_Response:
+    type: object
+    required:
+      - RequestStatus
+      - PolicyBatch
+    properties:
+      messageDetail:
+        type: object
+      RequestStatus:
+        type: string
+      CustomerName:
+        type: string
+      CustomerReferenceNumber:
+        type: string
+      PolicyBatch:
+        type: object
+        properties:
+          PaymentStatus:
+            type: string
+          DepartureDate:
+            type: string
+          ReturnDate:
+            type: string
+          PolicyEffectiveDate:
+            type: string
+          RentalStartDate:
+            type: string
+          RentalEndDate:
+            type: string
+          Issued Date:
+            type: string
+          PolicyExpirationDate:
+            type: string
+          DepositDate:
+            type: string
+          BatchNumber:
+            type: string
+          TotalPolicyPremium:
+            type: string
+          Documents:
+            type: array
+            items:
+              properties:
+                DocumentType:
+                  type: string
+                DocumentName:
+                  type: string
+                DocumentURL:
+                  type: string
+          Policies:
+            type: array
+            items:
+              properties:
+                PolicyNumber:
+                  type: string
+                TravelerIndex:
+                  type: string
+                TravelerPremium:
+                  type: string
+                Documents:
+                  type: array
+                  items:
+                    properties:
+                      DocumentType:
+                        type: string
+                      DocumentName:
+                        type: string
+                      DocumentURL:
+                        type: string
+  errorModel:
+    type: object
+    required:
+      - RequestStatus
+      - MessageDetail
+    properties:
+      RequestStatus:
+        type: string
+      MessageDetail:
+        type: object
+        properties:
+          MessageCode:
+            type: string
+          MessageType:
+            type: string
+          UserMessage:
+            type: string
+          MessageLevel:
+            type: string
+          MessageSeverity:
+            type: string
+          MessageList:
+            type: object
+            properties:
+              Message:
+                type: array
+                items:
+                  type: string
