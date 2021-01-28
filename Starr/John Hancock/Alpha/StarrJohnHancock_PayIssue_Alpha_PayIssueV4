@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   version: 'Pay_IssueV4'
-  title: Assist Card - Pay Issue API
+  title: John Hancock - Pay Issue API
   description: |
     Pay and Issue API accepts the CustomerReferenceNumber as input along with
     Payment information and issues the CRN and returns the Batch, Policy and other
