@@ -1,0 +1,318 @@
+swagger: '2.0'
+info:
+  version: 'InvokeRatingV5'
+  title: John Hancock - Rating API
+  description: |
+    Get rates for the John Hancock Travel plans. 
+  
+    Features:
+    1. Accept input as JSON request with Plan information
+    2. Respond back with premium information
+    3. Respond with erorr message incase of invalid request or failure scenarios
+    4. Added coverage information along with response
+    5. Enhaced Rate API to respond with proper error messages
+    
+  contact:
+    name: Solartis Support
+    email: solartis_assist_support@solartis.com
+
+host: scisakbv4-2.solartis.net
+basePath: /DroolsV4_2/DroolsService
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /FireEventV2:
+    post:
+      description: Get Rates for the given input
+      operationId: getRates
+      produces:
+        - application/json
+      parameters:
+        - name: Token
+          in: header
+          description: Authentication Token
+          required: true
+          type: string
+          format: string
+          default: "qOgoyA6vZM3Q/DnlQpXl6wQbCcDP5DYFagteTZt/VELMNKQasxqakmheSNcBh3+meJfQHQzrkqUMBShAjRSbI+GqHpNHwnnhGePGI9fBwn7FhRH344xP9ZxqJ7IotHrBOM26rUJ8PmmyOVImRyUGb/vNhv5FzWalI3Ujx/ylCYyU60ff/N7HN2EDoZJiMH12jXG/gq90OAwOQlgUw8PY2tx3HiNi4hDzm3cS5BXL1/ptzr/l4lOjehfCVvyRl7JIIb6n/Aoa5NeAeqsGrXFwhaGuvAOc0m1R845OmZCHgwep5oCFqbu1/ZUGA5e4/Xtz7BoSL81ws23UYQNpFr867LVAXRaTZSCK7NNndFREoaMzio3jOmHpsDudM7/9XkTE8mxcMSo0L0xeqVwvRXHAMFAOGpzzY6syXB1iyxW2CgML/RXTKvn41MY2R9/tSLRDJRkrApdAB9TqDeybuMja5u+/JYxI979mU8SBPF8gT0S28Nkpzs7V8m0Zg70wR2k2RCzRIuheLVABZLz0o4VvbzY/oIJJVoNHjQHNbjJh67aXM4oHUuCdKlcDVXBDsDLtLO/57AmHYkKnvFWo3m9UXxpr8IwmT8v4LYNMcm7neEL/AbbP/t480Qlt6sF8Bg8ze+DuxQ2rC0H082gUcSm5zFu6VZukZOdmJml/ew5VPTu/HqyqW+s+cCQbAnxxJaZcCiGjTynpQjvAN8guaY+4t1u6VZukZOdmJml/ew5VPTvdMR/+Ze4+GyTdGtMhpaRiVxTDTdbSTOCYCezcGVEBlBkT96jMEiEe3nnxlPZ9dQ3d+ghCBVWWIU8hir4HsWi0gNrBiqUBv8Ndd602owpUAd9Bybe6pV4gSA22FVWxYAezThRmldGDJxjmCZ+hBpnsoG7GyI5+dc4XkRNPRxigzddFqX6JT/1uNik+pAoslo4UKKsh4nOAgDtk9Z7f/r4G"
+        - name: EventName
+          in: header
+          description: Name of the event to be invoked
+          required: true
+          type: string
+          format: string
+          default: "InvokeRatingV5"
+        - name: Rating
+          in: body
+          description: Rating content
+          required: true
+          schema:
+            $ref: '#/definitions/Rating_Request'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            $ref: '#/definitions/Rating_Success_Response'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  Rating_Request:
+    type: object
+    required:
+     - ServiceRequestDetail
+     - QuoteInformation
+    properties:
+      EndClientUserUniqueSessionId:
+        type: string
+      EndClientUserBrowserSessionId:
+        type: string
+      EndClientUserBrowserInformation:
+        type: string
+      PaaSClientIPAddress:
+        type: string
+      ClientUniqueRequestID:
+        type: string
+      ServiceRequestDetail:
+        type: object
+        required:
+          - OwnerId
+          - RegionCode
+          - Token
+          - ServiceRequestVersion
+          - ServiceResponseVersion
+          - ResponseType
+        properties:
+          ServiceRequestVersion:
+            type: string
+            default: "1.0"
+          ServiceResponseVersion:
+            type: string
+            default: "1.0"
+          OwnerId:
+            type: string
+            default: "15"
+          ResponseType:
+            type: string
+            enum: ["JSON","XML"]
+            default: "JSON"
+          RegionCode:
+            type: string
+            default: "US"
+          Token:
+            type: string
+            default: "qOgoyA6vZM3Q/DnlQpXl6wQbCcDP5DYFagteTZt/VELMNKQasxqakmheSNcBh3+meJfQHQzrkqUMBShAjRSbI+GqHpNHwnnhGePGI9fBwn7FhRH344xP9ZxqJ7IotHrBOM26rUJ8PmmyOVImRyUGb/vNhv5FzWalI3Ujx/ylCYyU60ff/N7HN2EDoZJiMH12jXG/gq90OAwOQlgUw8PY2tx3HiNi4hDzm3cS5BXL1/ptzr/l4lOjehfCVvyRl7JIIb6n/Aoa5NeAeqsGrXFwhaGuvAOc0m1R845OmZCHgwep5oCFqbu1/ZUGA5e4/Xtz7BoSL81ws23UYQNpFr867LVAXRaTZSCK7NNndFREoaMzio3jOmHpsDudM7/9XkTE8mxcMSo0L0xeqVwvRXHAMFAOGpzzY6syXB1iyxW2CgML/RXTKvn41MY2R9/tSLRDJRkrApdAB9TqDeybuMja5u+/JYxI979mU8SBPF8gT0S28Nkpzs7V8m0Zg70wR2k2RCzRIuheLVABZLz0o4VvbzY/oIJJVoNHjQHNbjJh67aXM4oHUuCdKlcDVXBDsDLtLO/57AmHYkKnvFWo3m9UXxpr8IwmT8v4LYNMcm7neEL/AbbP/t480Qlt6sF8Bg8ze+DuxQ2rC0H082gUcSm5zFu6VZukZOdmJml/ew5VPTu/HqyqW+s+cCQbAnxxJaZcCiGjTynpQjvAN8guaY+4t1u6VZukZOdmJml/ew5VPTvdMR/+Ze4+GyTdGtMhpaRiVxTDTdbSTOCYCezcGVEBlBkT96jMEiEe3nnxlPZ9dQ3d+ghCBVWWIU8hir4HsWi0gNrBiqUBv8Ndd602owpUAd9Bybe6pV4gSA22FVWxYAezThRmldGDJxjmCZ+hBpnsoG7GyI5+dc4XkRNPRxigzddFqX6JT/1uNik+pAoslo4UKKsh4nOAgDtk9Z7f/r4G"
+          UserName:
+            type: string
+            default: "travelagent"
+          LanguageCode:
+            type: string
+            default: "en"
+          BrowserIp:
+            type: string
+      QuoteInformation:
+        type: object
+        required:
+          - ProducerCode
+          - OwnerId
+          - PlanName
+          - PlanCode
+          - StateCode
+          - EventName
+          - ProductNumber
+          - ProductVerNumber
+          - TravelerList
+        properties:
+          ProductNumber:
+            type: string
+            default: "ILT"
+          ProductVerNumber:
+            type: string
+            default: "2.0"
+          AgentID:
+            type: string
+            default: "62"
+          AgencyID:
+            type: string
+            default: "5549"
+          CustomerID:
+            type: string
+            default: "12"
+          RoleID:
+            type: string
+            default: "5"
+          RoleName:
+            type: string
+            default: "Agent"
+          RoleType:
+            type: string
+            default: "User"
+          ProducerCode:
+            type: string
+            default: "1558"
+          MGACode:
+            type: string
+            default: "1558"
+          OwnerId:
+            type: string
+            default: "15"
+          PlanName:
+            type: string
+            enum: ["Bronze","Silver","Gold"]
+          PlanCode:
+            type: string
+            enum: ["15","16","17"]
+          DepartureDate:
+            type: string
+          ReturnDate:
+            type: string
+          DepositDate:
+            type: string
+          TripCancellationCoverage:
+            type: string
+            enum: ["","With Trip Cancellation","With Trip Cancellation for Any Reason"]
+          RentersCollission:
+            type: string
+            enum: ["","Included","Excluded"]
+          ADDCommonCarrier:
+            type: string
+            enum: ["","300000","500000"]  
+          DestinationCountry:
+            type: string
+          PolicyEffectiveDate:
+            type: string
+          RentalStartDate:
+            type: string
+          RentalEndDate:
+            type: string
+          RentalLimit:
+            type: string
+            enum: ["35000"]
+          NumberOfRentalCars:
+            type: string
+            enum: ["1"]
+          StateCode:
+            type: string
+          StateName:
+            type: string
+          QuoteType:
+            type: string
+            default: "New Business"
+          EventName:
+            type: string
+            default: "InvokeRatingV5"
+          TravelerList:
+            type: array
+            items:
+              required:
+                - TravelerDOB
+              properties:
+                TravelerDOB:
+                  type: string
+                TravelCost:
+                  type: string
+                  
+  Rating_Success_Response:
+    type: object
+    required:
+      - RequestStatus
+      - PremiumInformation
+    properties:
+      messageDetail:
+        type: object
+      RequestStatus:
+        type: string
+      PremiumInformation:
+        type: object
+        properties:
+          TotalBasePremium:
+            type: string
+          TravelerList:
+            type: array
+            items:
+              properties:
+                TravelCost:
+                  type: string
+                TravelerDOB:
+                  type: string
+                  format: date
+                TravelerBasePremium:
+                  type: string
+                TravelerGrossPremium:
+                  type: string
+                TravelerOptionalCoverage:
+                  type: string
+          PlanCode:
+            type: string
+          PlanName:
+            type: string
+          TotalGrossPremium:
+            type: string
+          TotalGrossPremium_IM:
+            type: string
+          TotalGrossPremium_AH:
+            type: string
+          ServiceFee:
+            type: string
+          CommissionAmt:
+            type: string
+          TotalOptionalCoverage:
+            type: string
+          IsCFARApplicable:
+            type: string
+          TotalCFARPremium:
+            type: string
+          TotalTripCancellationPremium:
+            type: string
+          ADDCommonCarrierPremium:
+            type: string
+          RentersCollisionPremium:
+            type: string  
+          TripCancellationCoverage:
+            type: string
+          CFARErrorMessage:
+            type: string
+      CoverageInformation:
+        type: array
+        items:
+          properties:
+            CoverageName:
+              type: string
+            CoverageLimit:
+              type: string
+            IsOptionalCoverage:
+              type: string
+  
+  errorModel:
+    type: object
+    required:
+      - RequestStatus
+      - MessageDetail
+    properties:
+      RequestStatus:
+        type: string
+      MessageDetail:
+        type: object
+        properties:
+          MessageCode:
+            type: string
+          MessageType:
+            type: string
+          UserMessage:
+            type: string
+          MessageLevel:
+            type: string
+          MessageSeverity:
+            type: string
+          MessageList:
+            type: object
+            properties:
+              Message:
+                type: array
+                items:
+                  type: string
