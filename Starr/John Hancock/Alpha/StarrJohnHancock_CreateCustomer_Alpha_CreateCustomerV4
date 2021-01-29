@@ -143,10 +143,10 @@ definitions:
             default: "1.0"
           ProducerCode:
             type: string
-            default: "1558"
+            default: "1001"
           MGACode:
             type: string
-            default: "3391"
+            default: "1001"
           OwnerId:
             type: string
             default: "15"
