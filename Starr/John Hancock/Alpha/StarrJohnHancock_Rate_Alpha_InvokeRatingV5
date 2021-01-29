@@ -184,18 +184,6 @@ definitions:
             enum: ["","300000","500000"]  
           DestinationCountry:
             type: string
-          PolicyEffectiveDate:
-            type: string
-          RentalStartDate:
-            type: string
-          RentalEndDate:
-            type: string
-          RentalLimit:
-            type: string
-            enum: ["35000"]
-          NumberOfRentalCars:
-            type: string
-            enum: ["1"]
           StateCode:
             type: string
           StateName:
