@@ -40,7 +40,7 @@ paths:
           required: true
           type: string
           format: string
-          default: "3.1.0.6"
+          default: "3.1.0.7"
         - name: Policy
           in: body
           description: Policy content
@@ -129,7 +129,7 @@ definitions:
           EventVersion:
             title: "Event Version"
             type: string
-            default: "3.1.0.6"
+            default: "3.1.0.7"
           SubmissionNumber:
             title: "SubmissionNumber"
             type: string
@@ -454,6 +454,9 @@ definitions:
           TotalPremium:
             title: "Total Premium"
             type: string
+          FundingType:
+            title: "Type Of Funding"
+            type: string  
           Commission:
             title: "Commission"
             type: string
@@ -527,6 +530,12 @@ definitions:
                     IndustryFactorValue:
                       title: "Industry Factor Value"
                       type: string
+                    FundingTypeFactor:
+                      title: "Funding Type Factor"
+                      type: string
+                    FundingTypePremium:
+                      title: "Funding Type Premium"
+                      type: string  
                     CoverageLevelTotalBasePremium:
                       title: "Coverage Level Total Base Premium"
                       type: string
