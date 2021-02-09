@@ -40,7 +40,7 @@ paths:
           required: true
           type: string
           format: string
-          default: "3.1.0.2"
+          default: "3.1.0.3"
         - name: Policy
           in: body
           description: Policy content
@@ -127,7 +127,7 @@ definitions:
           EventVersion:
             title: "Event Version"
             type: string
-            default: "3.1.0.2"
+            default: "3.1.0.3"
           PolicyNumber:
             title: "Policy Number"
             type: string
@@ -298,6 +298,9 @@ definitions:
           Payroll:
             title: "Payroll"
             type: string
+          FundingType:
+            title: "Type Of Funding"
+            type: string  
           FundraiseList:
             type: array
             items:
