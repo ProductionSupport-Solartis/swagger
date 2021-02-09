@@ -40,7 +40,7 @@ paths:
           required: true
           type: string
           format: string
-          default: "3.1.0.3"
+          default: "3.1.0.4"
         - name: Policy
           in: body
           description: Policy content
@@ -140,7 +140,7 @@ definitions:
           EventVersion:
             title: "Event Version"
             type: string
-            default: "3.1.0.3"
+            default: "3.1.0.4"
           PolicyNumber:
             title: "Policy Number"
             type: string
@@ -309,6 +309,9 @@ definitions:
           NumberOfPersonallyIdentifiableOrSensitiveRecordsEstimate:
             title: "Number Of Personally Identifiable Or Sensitive Records Estimate"
             type: string
+          FundingType:
+            title: "Type Of Funding"
+            type: string  
           ThirdPartyDataList:
             type: array
             items:
@@ -592,6 +595,9 @@ definitions:
           NumberOfPersonallyIdentifiableOrSensitiveRecordsEstimate:
             title: "Number Of Personally Identifiable Or Sensitive Records Estimate"
             type: string
+          FundingType:
+            title: "Type Of Funding"
+            type: string
           ThirdPartyDataList:
             type: array
             items:
@@ -679,4 +685,4 @@ definitions:
               Message:
                 type: array
                 items:
-                  type: string      
+                  type: string    
