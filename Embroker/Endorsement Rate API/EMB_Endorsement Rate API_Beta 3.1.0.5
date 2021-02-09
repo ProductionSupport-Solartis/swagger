@@ -40,7 +40,7 @@ paths:
           required: true
           type: string
           format: string
-          default: "3.1.0.4"
+          default: "3.1.0.5"
         - name: Policy
           in: body
           description: Policy content
@@ -143,7 +143,7 @@ definitions:
           EventVersion:
             title: "Event Version"
             type: string
-            default: "3.1.0.4"
+            default: "3.1.0.5"
           PolicyNumber:
             title: "Policy Number"
             type: string
@@ -475,6 +475,9 @@ definitions:
           Payroll:
             title: "Payroll"
             type: string
+          FundingType:
+            title: "Type Of Funding"
+            type: string  
           FundraiseList:
             type: array
             items:
@@ -655,6 +658,15 @@ definitions:
                     EndorsementIndustryValue:
                       title: "Endorsement Industry Value"
                       type: string
+                    FundingTypeFactor:
+                      title: "Funding Type Factor"
+                      type: string
+                    FundingTypePremium:
+                      title: "Funding Type Premium"
+                      type: string
+                    EndorsementFundingTypePremium:
+                      title: "Endorsement Funding Type Premium"
+                      type: string  
                     CoverageLevelTotalBasePremium:
                       title: "Coverage Level Total Base Premium"
                       type: string
