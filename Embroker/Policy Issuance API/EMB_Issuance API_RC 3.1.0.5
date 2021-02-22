@@ -40,7 +40,7 @@ paths:
           required: true
           type: string
           format: string
-          default: "3.1.0.4"
+          default: "3.1.0.5"
         - name: Policy
           in: body
           description: Policy content
@@ -131,7 +131,7 @@ definitions:
           EventVersion:
             title: "Event Version"
             type: string
-            default: "3.1.0.4"
+            default: "3.1.0.5"
           QuoteNumber:
             title: "Quote Number"
             type: string
@@ -237,6 +237,12 @@ definitions:
           ExpirationDate:
             title: "Expiration Date"
             type: string
+          SociusEndorsementDesignation:
+            title: "Socius Endorsement Designation"
+            type: string 
+          EndorsementCurrencyValue:
+            title: "Endorsement Currency Value"
+            type: string  
           TotalDiscountPercent:
             title: "Total Discount Percent"
             type: string
