@@ -40,7 +40,7 @@ paths:
           required: true
           type: string
           format: string
-          default: "3.1.0.7"
+          default: "3.1.0.8"
         - name: Policy
           in: body
           description: Policy content
@@ -113,6 +113,7 @@ definitions:
           - SubmissionNumber
           - PolicyFee
           - IsPolicyFeeTaxable
+          - SociusEndorsementDesignation
         properties:
           ProductNumber:
             title: "Product Number"
@@ -129,7 +130,7 @@ definitions:
           EventVersion:
             title: "Event Version"
             type: string
-            default: "3.1.0.7"
+            default: "3.1.0.8"
           SubmissionNumber:
             title: "SubmissionNumber"
             type: string
@@ -155,6 +156,13 @@ definitions:
             title: "Is Policy Fee Taxable"
             type: string  
             enum: ["Yes", "No"]
+          SociusEndorsementDesignation:
+            title: "Socius Endorsement Flag"
+            type: string  
+            enum: ["Yes", "No"]
+          EndorsementCurrencyValue:
+            title: "Endorsement Currency Value"
+            type: string   
           Coverage:
             type: array
             items:
@@ -427,6 +435,12 @@ definitions:
           IsPolicyFeeTaxable:
             title: "Is Policy Fee Taxable"
             type: string
+          SociusEndorsementDesignation:
+            title: "Socius Endorsement Flag"
+            type: string
+          EndorsementCurrencyValue:
+            title: "Endorsement Currency Value"
+            type: string     
           AnnualPremium:
             title: "Annual Premium"
             type: string
