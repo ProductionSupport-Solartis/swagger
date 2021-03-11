@@ -1,0 +1,328 @@
+swagger: '2.0'
+info:
+  version: 'CreateCustomerV4'
+  title: John Hancock - Create Customer API
+  description: |
+    Create Customer API is to save the Traveler, Trip information and generate a unique identifier which can be referenced to a CSR at any given point in the business flow. From which the CSR would pickup the CRN number and issue a quote in case the user is not able to proceed with the flow by Underwriting rules.
+  
+    Features:
+    1. Provides ability to save the Trip, Traveler Informations and generates a Customer Reference Number
+    2. Displays the Old traveler Index for Travelers whose index is updated after deleting some travelers
+    
+  contact:
+    name: Solartis Support
+    email: solartis_assist_support@solartis.com
+    
+host: qasakbv4-2.solartis.net
+basePath: /DroolsV4_2/DroolsService
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /FireEventV2:
+    post:
+      description: Save traveler information and plan information
+      operationId: CreateCustomer
+      produces:
+        - application/json
+      parameters:
+        - name: Token
+          in: header
+          description: Authentication Token
+          required: true
+          type: string
+          format: string
+          default: "G1MwYSTnZd0Mny1bMQWhvBv1iyggSGmrcV+tu0loxHeFeVHmMvMc1wTGFZ2mMao0mqSImaXCld5k0b+o+M6asnfPCXTRKXfKSeyWVLO/GEYlI0cOHvwce7b+9yRPH/7jAA/3vuzuMX1y3yJPUQBx3bhtSi3GTIypW/OyO682LOJbU3ub9+7TMQOlWgWR/LzCgInVc2rVzPbskndgPSlR5zc4DOikfRilSIzF7M8a1R+ppJ875nxim+HZoSXpjpLsgmfsLui4VgwQJPWbWxSdzLJJZKHtu2fU0y9tqyUYWUH98rzyoYJHf7WyElJz0b35m9W85gd/in83M4bVJQ3dWqoTL/MKYUXpmhVNkhp7A8ip3HJkPgymeGaJFFyGuwgXooV95DGlmEW05n9be7so/O1Pxy4ZWXdD0sEhw9DwpFoahvBEX7p5AA6a82jaZ1D4wgrJ6oOVualvG7OuogNvFuSwwLXS+hVjMkZcOxzgB2lf8t1xjwle4WbBG9rKM5M00tpv0LP8iR/EQA7BBdWFE3uSZPdDhMOSBt7PfwX3Z24yYa6FCbqYjFLims9+4P71m8Y9pOHTHhWj09/uuq58oYGyibiHK5e3KHlht/p4eM4h6f1z/Fcl5xOxLnvVeH9uYK6cfcFsCRmNBkmPW8Wnquo7PTodVLZJIgL30fEcrbZ1o6pcUAVk5UDd1IC8wxTt3d4rr5A0gykBQ6KgjmJbxOo7PTodVLZJIgL30fEcrbZUYWIICOO/eVP41S3+zEKBfQbV6UPwIiuV9affpEhrboYDbH/DfKirsVUJBvXW3kQ35/L6wxYgNTXxggpXjsmeyOPDXeHtjxVdU2Qgk9NNM+dC4B7k9Wfxz42ynvVdDGRx9bX6h2oSDKS8Og17+B97RyWpxQlZw+b/KK06PVvzLMsuJb4ki+EtjROgGVlDqvILH7wDfRdB5Ud9jmfzIKxF"
+        - name: EventName
+          in: header
+          description: Name of the event to be invoked
+          required: true
+          type: string
+          format: string
+          default: "CreateCustomerV4"
+        - name: CreateCustomer
+          in: body
+          description: Save customer/traveler details
+          required: true
+          schema:
+            $ref: '#/definitions/SaveCustomer_Request'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            $ref: '#/definitions/SaveCustomer_Success_Response'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  SaveCustomer_Request:
+    type: object
+    required:
+     - ServiceRequestDetail
+     - CustomerInformation
+    properties:
+      EndClientUserUniqueSessionId:
+        type: string
+      EndClientUserBrowserSessionId:
+        type: string
+      EndClientUserBrowserInformation:
+        type: string
+      PaaSClientIPAddress:
+        type: string
+      ClientUniqueRequestID:
+        type: string
+      ServiceRequestDetail:
+        type: object
+        required:
+          - OwnerId
+          - RegionCode
+          - Token
+          - ServiceRequestVersion
+          - ServiceResponseVersion
+          - ResponseType
+        properties:
+          ServiceRequestVersion:
+            type: string
+            default: "1.0"
+          ServiceResponseVersion:
+            type: string
+            default: "1.0"
+          OwnerId:
+            type: string
+            default: "15"
+          ResponseType:
+            type: string
+            enum: ["JSON","XML"]
+            default: "JSON"
+          RegionCode:
+            type: string
+            default: "US"
+          Token:
+            type: string
+            default: "G1MwYSTnZd0Mny1bMQWhvBv1iyggSGmrcV+tu0loxHeFeVHmMvMc1wTGFZ2mMao0mqSImaXCld5k0b+o+M6asnfPCXTRKXfKSeyWVLO/GEYlI0cOHvwce7b+9yRPH/7jAA/3vuzuMX1y3yJPUQBx3bhtSi3GTIypW/OyO682LOJbU3ub9+7TMQOlWgWR/LzCgInVc2rVzPbskndgPSlR5zc4DOikfRilSIzF7M8a1R+ppJ875nxim+HZoSXpjpLsgmfsLui4VgwQJPWbWxSdzLJJZKHtu2fU0y9tqyUYWUH98rzyoYJHf7WyElJz0b35m9W85gd/in83M4bVJQ3dWqoTL/MKYUXpmhVNkhp7A8ip3HJkPgymeGaJFFyGuwgXooV95DGlmEW05n9be7so/O1Pxy4ZWXdD0sEhw9DwpFoahvBEX7p5AA6a82jaZ1D4wgrJ6oOVualvG7OuogNvFuSwwLXS+hVjMkZcOxzgB2lf8t1xjwle4WbBG9rKM5M00tpv0LP8iR/EQA7BBdWFE3uSZPdDhMOSBt7PfwX3Z24yYa6FCbqYjFLims9+4P71m8Y9pOHTHhWj09/uuq58oYGyibiHK5e3KHlht/p4eM4h6f1z/Fcl5xOxLnvVeH9uYK6cfcFsCRmNBkmPW8Wnquo7PTodVLZJIgL30fEcrbZ1o6pcUAVk5UDd1IC8wxTt3d4rr5A0gykBQ6KgjmJbxOo7PTodVLZJIgL30fEcrbZUYWIICOO/eVP41S3+zEKBfQbV6UPwIiuV9affpEhrboYDbH/DfKirsVUJBvXW3kQ35/L6wxYgNTXxggpXjsmeyOPDXeHtjxVdU2Qgk9NNM+dC4B7k9Wfxz42ynvVdDGRx9bX6h2oSDKS8Og17+B97RyWpxQlZw+b/KK06PVvzLMsuJb4ki+EtjROgGVlDqvILH7wDfRdB5Ud9jmfzIKxF"
+          UserName:
+            type: string
+            default: "travelagent"
+          LanguageCode:
+            type: string
+            default: "en"
+          BrowserIp:
+            type: string
+      CustomerInformation:
+        type: object
+        required:
+          - ProducerCode
+          - OwnerId
+          - PlanName
+          - PlanCode
+          - StateCode
+          - StateName
+          - PlanType
+          - EventName
+          - ProductVerID
+          - ProductID
+          - ProductNumber
+          - ProductVerNumber
+          - TravelerList
+        properties:
+          ProductVerID:
+            type: string
+            default: "706"
+          ProductID:
+            type: string
+            default: "619"
+          ProductNumber:
+            type: string
+            default: "ILT"
+          ProductVerNumber:
+            type: string
+            default: "1.0"
+          ProducerCode:
+            type: string
+            default: "1558"
+          MGACode:
+            type: string
+            default: "1558"
+          OwnerId:
+            type: string
+            default: "15"
+          CustomerReferenceNumber:
+            type: string
+          PlanName:
+            type: string
+            enum: ["Bronze","Silver","Gold"]
+          PlanCode:
+            type: string
+            enum: ["24","25","26"]
+          PlanType:
+            type: string
+            enum: ["Single Trip"]
+          DepartureDate:
+            type: string
+          ReturnDate:
+            type: string
+          DepositDate:
+            type: string
+          TripCancellationCoverage:
+            type: string
+            enum: ["","With Trip Cancellation","With Trip Cancellation for Any Reason"]
+          RentersCollission:
+            type: string
+            enum: ["","Included","Excluded"]
+          ADDCommonCarrier:
+            type: string
+            enum: ["","300000","500000"]
+          DestinationCountry:
+            type: string
+          CubaTravelReason:
+            type: string
+            enum: ["Family visits", "Official business of the U.S. government, foreign governments, and certain intergovernmental organizations", "Journalistic activity", "Professional research and professional meetings", "Educational activities", "Religious activities", "Public performances, clinics, workshops, athletic and other competitions, and exhibitions", "Support for the Cuban people", "Humanitarian projects", "Activities of private foundations or research or educational institutes", "Exportation, importation, or transmission of information or information materials", "Certain authorized export transactions", "Other Licensed Activity"]
+          StateCode:
+            type: string
+          StateName:
+            type: string
+          QuoteType:
+            type: string
+            default: "New Business"
+          EventName:
+            type: string
+            default: "CreateCustomerV4"
+          TravelerList:
+            type: array
+            items:
+              required:
+                - TravelerDOB
+              properties:
+                TravelerDOB:
+                  type: string
+                TravelCost:
+                  type: string
+                FirstName:
+                  type: string
+                LastName:
+                  type: string
+                AddressLine1:
+                  type: string
+                AddressLine2:
+                  type: string
+                City:
+                  type: string
+                State:
+                  type: string
+                StateCode:
+                  type: string
+                Country:
+                  type: string
+                Zipcode:
+                  type: string
+                Phone:
+                  type: string
+                Email:
+                  type: string
+                OFACLicenseNumber:
+                  type: string
+                TravelerIndex:
+                  type: string
+  SaveCustomer_Success_Response:
+    type: object
+    required:
+      - RequestStatus
+      - CustomerInformation
+    properties:
+      messageDetail:
+        type: object
+      RequestStatus:
+        type: string
+      CustomerInformation:
+        type: object
+        properties:
+          CustomerReferenceNumber:
+            type: string
+          PlanCode:
+            type: string
+          PlanName:
+            type: string
+          PlanType:
+            type: string
+          ProducerCode:
+            type: string
+          StateName:
+            type: string
+          StateCode:
+            type: string
+          OwnerId:
+            type: string
+          EventName:
+            type: string
+          PolicyEffectiveDate:
+            type: string
+            format: date
+          RentersCollission:
+            type: string
+          ADDCommonCarrier:
+            type: string
+          TravelerList:
+            type: array
+            items:
+              properties:
+                TravelerDOB:
+                  type: string
+                  format: date
+                TravelCost:
+                  type: string
+                FirstName:
+                  type: string
+                LastName:
+                  type: string
+                AddressLine1:
+                  type: string
+                AddressLine2:
+                  type: string
+                City:
+                  type: string
+                State:
+                  type: string
+                StateCode:
+                  type: string
+                Country:
+                  type: string
+                Zipcode:
+                  type: string
+                Phone:
+                  type: string
+                Email:
+                  type: string
+                TravelerIndex:
+                  type: string
+  errorModel:
+    type: object
+    required:
+      - RequestStatus
+      - MessageDetail
+    properties:
+      RequestStatus:
+        type: string
+      MessageDetail:
+        type: object
+        properties:
+          MessageCode:
+            type: string
+          MessageType:
+            type: string
+          UserMessage:
+            type: string
+          MessageLevel:
+            type: string
+          MessageSeverity:
+            type: string
+          MessageList:
+            type: object
+            properties:
+              Message:
+                type: array
+                items:
+                  type: string
